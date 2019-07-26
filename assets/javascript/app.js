@@ -53,9 +53,8 @@ function gifGenerator() {
                 console.log(stillURL)
 
                 // Rating Append
-                let newGifs = $(`<div class="col-md-12">`)
+                let newGifs = $(`<div class="col-md-12 imgstyle">`)
                 newGifs.append(`<h2> Rating : ${results[i].rating}</h2>`)
-
                 // Image Append
                 let image = $("<img>").addClass("toggler img-fluid")
                 image.attr("src", animateURL)
