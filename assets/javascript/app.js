@@ -12,7 +12,7 @@ function renderButton() {
         let newButton = $("<button>");
         newButton.addClass("newgif btn btn-success")
         newButton.attr("data-name", sportsList[i])
-        newButton.text(sportsList[i])
+        newButton.text(sportsList[i].charAt(0).toUpperCase() + sportsList[i].slice(1))
         $("#button-holder").append(newButton)
 
 
@@ -27,7 +27,6 @@ function gifGenerator() {
     console.log(userChoice)
     let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${userChoice}"&limit=10&offset=0&rating=&lang=en`
 
-
     $(".gif-holder").empty();
     $.ajax({
         url: queryURL,
@@ -37,15 +36,15 @@ function gifGenerator() {
 
         let results = response.data
 
-
         for (let i = 0; i < results.length; i++) {
 
+            // Storing urls into a variable
             let animateURL = response.data[i].images.downsized.url
             let stillURL = response.data[i].images.downsized_still.url
 
             // Rating Append
-            let newGifs = $(`<div class="col-md-12 imgstyle">`)
-            newGifs.append(`<h2> Rating : ${results[i].rating.toUpperCase()}</h2>`)
+            let newGifs = $(`<div class="col-md-12 imgstyle border bg-dark" style="margin: 25px;">`)
+            newGifs.append(`<h2 style="margin-top: 25px;">  Rating : ${results[i].rating.toUpperCase()}</h2>`)
 
             // Image Append
             let image = $("<img>").addClass("toggler img-fluid")
@@ -64,16 +63,18 @@ function gifGenerator() {
 
 function gifToggler() {
 
-
+    // Storing "this" attributes into variables
     let state = $(this).attr("data-state");
     let animate = $(this).attr("data-animate");
     let still = $(this).attr("data-still");
 
+        // Will set the gif to the still url
     if (state == "animate") {
 
         $(this).attr("src", still)
         $(this).attr("data-state", "still")
     }
+        // Will set the gif to the animated url
 
     else {
         $(this).attr("src", animate)
