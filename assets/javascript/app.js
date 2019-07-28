@@ -1,9 +1,9 @@
 // Global Variables
 let sportsList = ["basketball", "tennis", "golf", "hockey"]
 
-// Function to render buttons, can add additional functions with the add-sport function
+// Function to render buttons, can add additional buttons using the add sport form.
 
-function renderButton (){
+function renderButton() {
 
     $("#button-holder").empty()
 
@@ -37,40 +37,29 @@ function gifGenerator() {
 
         let results = response.data
 
-        if (results.length == 0) {
-            alert("You must search a valid category")
-            return;
 
-        }
+        for (let i = 0; i < results.length; i++) {
 
-        else {
-            for (let i = 0; i < results.length; i++) {
+            let animateURL = response.data[i].images.downsized.url
+            let stillURL = response.data[i].images.downsized_still.url
 
-                let animateURL = response.data[i].images.downsized.url
-                let stillURL = response.data[i].images.downsized_still.url
+            // Rating Append
+            let newGifs = $(`<div class="col-md-12 imgstyle">`)
+            newGifs.append(`<h2> Rating : ${results[i].rating.toUpperCase()}</h2>`)
 
-                console.log(animateURL)
-                console.log(stillURL)
+            // Image Append
+            let image = $("<img>").addClass("toggler img-fluid")
+            image.attr("src", animateURL)
+            image.attr("data-still", stillURL)
+            image.attr("data-animate", animateURL)
+            image.attr("data-state", "animate")
+            newGifs.append(image)
 
-                // Rating Append
-                let newGifs = $(`<div class="col-md-12 imgstyle">`)
-                newGifs.append(`<h2> Rating : ${results[i].rating}</h2>`)
-                // Image Append
-                let image = $("<img>").addClass("toggler img-fluid")
-                image.attr("src", animateURL)
-                image.attr("data-still", stillURL)
-                image.attr("data-animate", animateURL)
-                image.attr("data-state", "animate")
-                newGifs.append(image)
+            // Append all gifs to the holder
 
-
-                $(".gif-holder").append(newGifs)
-
-            }
+            $(".gif-holder").append(newGifs)
         }
     })
-
-
 }
 
 function gifToggler() {
@@ -97,8 +86,6 @@ $("#add-sport").on("click", function (event) {
 
     event.preventDefault();
 
-
-
     let newSport = $("#sport-input").val().trim()
 
     if (newSport.length < 1) {
@@ -108,13 +95,27 @@ $("#add-sport").on("click", function (event) {
 
     else {
 
-        sportsList.push(newSport)
-        renderButton()
-        $("#sport-input").val("")
+        let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
+        let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${newSport}"&limit=10&offset=0&rating=&lang=en`
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            if (response.data.length == 0) {
+                alert("you did not input a valid field")
+                $("#sport-input").val("")
+                return;
+
+            }
+            else {
+                sportsList.push(newSport)
+                renderButton()
+                $("#sport-input").val("")
+            }
+        })
     }
-
 })
-
 
 renderButton();
 $(document).on("click", ".newgif", gifGenerator)
