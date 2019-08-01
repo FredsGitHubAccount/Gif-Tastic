@@ -19,7 +19,7 @@ function renderButton() {
     }
 }
 
-// Will append the rating and gif affiliated with the clicked button's value.
+// will append the rating and gif affiliated with the clicked button's value.
 function gifGenerator() {
 
     let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
@@ -38,15 +38,15 @@ function gifGenerator() {
 
         for (let i = 0; i < results.length; i++) {
 
-            // Storing urls into a variable
+            // storing urls into a variable
             let animateURL = response.data[i].images.downsized.url
             let stillURL = response.data[i].images.downsized_still.url
 
-            // Rating Append
-            let newGifs = $(`<div class="col-md-12 imgstyle border bg-dark" style="margin: 25px;">`)
-            newGifs.append(`<h2 style="margin-top: 25px;">  Rating : ${results[i].rating.toUpperCase()}</h2>`)
+            // rating append
+            let newGifs = $(`<div class="jumbotron imgstyle border bg-dark">`)
+            newGifs.append(`<h2  style="margin-bottom: 25px;">  Rating : ${results[i].rating.toUpperCase()}</h2>`)
 
-            // Image Append
+            // image append
             let image = $("<img>").addClass("toggler img-fluid")
             image.attr("src", animateURL)
             image.attr("data-still", stillURL)
@@ -54,27 +54,28 @@ function gifGenerator() {
             image.attr("data-state", "animate")
             newGifs.append(image)
 
-            // Append all gifs to the holder
+            // append all gifs to the holder
 
             $(".gif-holder").append(newGifs)
         }
     })
 }
 
+// toggle between still and animated gifs with an on click event
 function gifToggler() {
 
-    // Storing "this" attributes into variables
+    // storing "this" attributes into variables
     let state = $(this).attr("data-state");
     let animate = $(this).attr("data-animate");
     let still = $(this).attr("data-still");
 
-        // Will set the gif to the still url
+        // will set the gif to the still url
     if (state == "animate") {
 
         $(this).attr("src", still)
         $(this).attr("data-state", "still")
     }
-        // Will set the gif to the animated url
+        // will set the gif to the animated url
 
     else {
         $(this).attr("src", animate)
@@ -82,7 +83,7 @@ function gifToggler() {
     }
 }
 
-
+// adds a category to the button holder after it receives a response from the ajax call.  if there is no response, then the category doesn't exist.
 $("#add-sport").on("click", function (event) {
 
     event.preventDefault();
@@ -118,6 +119,7 @@ $("#add-sport").on("click", function (event) {
     }
 })
 
+// called functions & event listeners 
 renderButton();
 $(document).on("click", ".newgif", gifGenerator)
 $(document).on("click", ".toggler", gifToggler)
