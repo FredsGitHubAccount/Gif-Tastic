@@ -22,7 +22,7 @@ function renderButton() {
 // will append the rating and gif affiliated with the clicked button's value.
 function gifGenerator() {
 
-    let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
+    
     let userChoice = $(this).attr("data-name")
     console.log(userChoice)
     let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${userChoice}"&limit=10&offset=0&rating=&lang=en`
@@ -65,7 +65,7 @@ function gifGenerator() {
 function gifToggler() {
 
     // storing "this" attributes into variables
-    let state = $(this).attr("data-state");
+    let state = $(this).getAttribute("data-state");
     let animate = $(this).attr("data-animate");
     let still = $(this).attr("data-still");
 
@@ -90,14 +90,15 @@ $("#add-sport").on("click", function (event) {
 
     let newSport = $("#sport-input").val().trim()
 
+    // checks to see if anything was typed into the search box
     if (newSport.length < 1) {
         alert("You must type something in!")
         return;
     }
-
+// does an AJAX call to see if the added category exists on GIPHY so the rendered button can actually display gifs, if not, returns.
     else {
 
-        let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
+   
         let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${newSport}"&limit=10&offset=0&rating=&lang=en`
 
         $.ajax({
