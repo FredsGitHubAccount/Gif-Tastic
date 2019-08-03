@@ -124,3 +124,5 @@ $("#add-sport").on("click", function (event) {
 renderButton();
 $(document).on("click", ".newgif", gifGenerator)
 $(document).on("click", ".toggler", gifToggler)
+
+// hello
