@@ -7,7 +7,7 @@
 Create a Gif-Generator using HTML, CSS, JQuery, & AJAX.  
 
 ## Live link
-Open the live link at https://fredsgithubaccount.github.io/gif-tastic/
+Open the live link at https://fredsgithubaccount.github.io/Gif-Tastic/
 
 ### Technologies
 Front-End
