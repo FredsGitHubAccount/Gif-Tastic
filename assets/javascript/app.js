@@ -1,7 +1,7 @@
 // Global Variables
 let sportsList = ["basketball", "tennis", "golf", "hockey"]
 
-// Function to render buttons, can add additional buttons using the add sport form.
+// Function to render buttons, can add additional buttons using the add sport form
 
 function renderButton() {
 
@@ -19,7 +19,7 @@ function renderButton() {
     }
 }
 
-// will append the rating and gif affiliated with the clicked button's value.
+// will append the rating and gif affiliated with the clicked button's value
 function gifGenerator() {
 
     let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
@@ -83,7 +83,7 @@ function gifToggler() {
     }
 }
 
-// adds a category to the button holder after it receives a response from the ajax call.  if there is no response, then the category doesn't exist.
+// adds a category to the button holder after it receives a response from the ajax call.  if there is no response, then the category doesn't exist
 $("#add-sport").on("click", function (event) {
 
     event.preventDefault();
