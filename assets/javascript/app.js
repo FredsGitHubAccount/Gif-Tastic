@@ -67,13 +67,13 @@ function gifToggler() {
     let animate = $(this).attr("data-animate");
     let still = $(this).attr("data-still");
 
-        // will set the gif to the still url
+    // will set the gif to the still url
     if (state == "animate") {
 
         $(this).attr("src", still)
         $(this).attr("data-state", "still")
     }
-        // will set the gif to the animated url
+    // will set the gif to the animated url
     else {
         $(this).attr("src", animate)
         $(this).attr("data-state", "animate")
@@ -92,7 +92,7 @@ $("#add-sport").on("click", function (event) {
         alert("You must type something in!")
         return;
     }
-// does an AJAX call to see if the added category exists so it won't create a button that has no response
+    // does an AJAX call to see if the added category exists so it won't create a button that has no response
     else {
 
         let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
