@@ -95,7 +95,7 @@ $("#add-sport").on("click", function (event) {
         alert("You must type something in!")
         return;
     }
-// Does an AJAX call to see if the added category exists so it won't create a button that has no response
+// does an AJAX call to see if the added category exists so it won't create a button that has no response
     else {
 
         let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
@@ -124,5 +124,3 @@ $("#add-sport").on("click", function (event) {
 renderButton();
 $(document).on("click", ".newgif", gifGenerator)
 $(document).on("click", ".toggler", gifToggler)
-
-// hello
