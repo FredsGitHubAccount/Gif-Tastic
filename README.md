@@ -20,7 +20,7 @@ Front-End
 
 ### Setup 
 ```
-1. git clone https://github.com/FredsGitHubAccount/gif-tastic.git
+1. git clone https://github.com/FredsGitHubAccount/Gif-Tastic.git
 2. cd gif-tastic
 3. Open index.html in web browser
 

@@ -2,7 +2,6 @@
 let sportsList = ["basketball", "tennis", "golf", "hockey"]
 
 // Function to render buttons, can add additional buttons using the add sport form
-
 function renderButton() {
 
     $("#button-holder").empty()
@@ -55,7 +54,6 @@ function gifGenerator() {
             newGifs.append(image)
 
             // append all gifs to the holder
-
             $(".gif-holder").append(newGifs)
         }
     })
@@ -76,7 +74,6 @@ function gifToggler() {
         $(this).attr("data-state", "still")
     }
         // will set the gif to the animated url
-
     else {
         $(this).attr("src", animate)
         $(this).attr("data-state", "animate")
