@@ -1,4 +1,4 @@
-# Gif-Generator
+# Gif-Tastic
 
 ## Table of Contents 
 
