@@ -18,7 +18,7 @@ function renderButton() {
     }
 }
 
-// will append the rating and gif affiliated with the clicked button's value
+// Will append the rating and gif affiliated with the clicked button's value
 function gifGenerator() {
 
     let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
@@ -27,25 +27,27 @@ function gifGenerator() {
     let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q="${userChoice}"&limit=10&offset=0&rating=&lang=en`
 
     $(".gif-holder").empty();
+
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function (response) {
         console.log(response)
 
+        // Created a variable to shortcut the ajax response
         let results = response.data
 
         for (let i = 0; i < results.length; i++) {
 
-            // storing urls into a variable
+            // Storing urls into a variable for cleaner code
             let animateURL = response.data[i].images.downsized.url
             let stillURL = response.data[i].images.downsized_still.url
 
-            // rating append
+            // Append the ratings
             let newGifs = $(`<div class="jumbotron imgstyle border bg-dark">`)
-            newGifs.append(`<h2  style="margin-bottom: 25px;">  Rating : ${results[i].rating.toUpperCase()}</h2>`)
+            newGifs.append(`<h2 style="margin-bottom: 25px;">  Rating : ${results[i].rating.toUpperCase()}</h2>`)
 
-            // image append
+            // Append the image
             let image = $("<img>").addClass("toggler img-fluid")
             image.attr("src", animateURL)
             image.attr("data-still", stillURL)
@@ -53,34 +55,34 @@ function gifGenerator() {
             image.attr("data-state", "animate")
             newGifs.append(image)
 
-            // append all gifs to the holder
+            // Append all gifs to the holder
             $(".gif-holder").append(newGifs)
         }
     })
 }
 
-// toggle between still and animated gifs with an on click event
+// Toggle between still and animated gifs with an on click event
 function gifToggler() {
 
-    // storing "this" attributes into variables
+    // Storing "this" attributes into variables
     let state = $(this).attr("data-state");
     let animate = $(this).attr("data-animate");
     let still = $(this).attr("data-still");
 
-    // will set the gif to the still url
+    // Will set the gif to the still url
     if (state == "animate") {
 
         $(this).attr("src", still)
         $(this).attr("data-state", "still")
     }
-    // will set the gif to the animated url
+    // Will set the gif to the animated url
     else {
         $(this).attr("src", animate)
         $(this).attr("data-state", "animate")
     }
 }
 
-// adds a category to the button holder after it receives a response from the ajax call.  if there is no response, then the category doesn't exist
+// Adds a category to the button holder after it receives a response from the ajax call.  if there is no response, then the category doesn't exist
 $("#add-sport").on("click", function (event) {
 
     event.preventDefault();
@@ -92,7 +94,7 @@ $("#add-sport").on("click", function (event) {
         alert("You must type something in!")
         return;
     }
-    // does an AJAX call to see if the added category exists so it won't create a button that has no response
+    // Does an AJAX call to see if the added category exists so it won't create a button that has no response
     else {
 
         let apiKey = "VJbsDpwKy6yKGBcWTMuS5L3HfkyJvA6n"
@@ -117,7 +119,7 @@ $("#add-sport").on("click", function (event) {
     }
 })
 
-// called functions & event listeners 
+// Called functions & event listeners 
 renderButton();
 $(document).on("click", ".newgif", gifGenerator)
 $(document).on("click", ".toggler", gifToggler)
