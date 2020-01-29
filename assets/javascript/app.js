@@ -40,8 +40,8 @@ function gifGenerator() {
         for (let i = 0; i < results.length; i++) {
 
             // Storing urls into a variable for cleaner code
-            let animateURL = response.data[i].images.downsized.url
-            let stillURL = response.data[i].images.downsized_still.url
+            let animateURL = results[i].images.downsized.url
+            let stillURL = results[i].images.downsized_still.url
 
             // Append the ratings
             let newGifs = $(`<div class="jumbotron imgstyle border bg-dark">`)
